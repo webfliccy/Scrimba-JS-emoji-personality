@@ -7,7 +7,8 @@ renderBtns()
 
 function renderBtns() { 
    //Only show 1 button if emoji array is empty
-    if(myEmojis.length === 0) {
+    if(myEmojis.length < 1) {
+        console.log("here")
         document.getElementById("buttons-wrapper").innerHTML = `<button id="add-btn">Add</button>`
         const addBtn = document.getElementById("add-btn")
         addBtn.addEventListener("click", function(){
