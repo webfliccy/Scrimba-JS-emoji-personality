@@ -7,7 +7,7 @@ renderBtns()
 
 function renderBtns() { 
    //Only show 1 button if emoji array is empty
-    if(myEmojis.length == 0) {
+    if(myEmojis.length === 0) {
         document.getElementById("buttons-wrapper").innerHTML = `<button id="add-btn">Add</button>`
         const addBtn = document.getElementById("add-btn")
         addBtn.addEventListener("click", function(){
@@ -21,36 +21,9 @@ function renderBtns() {
         <br/>
             <button id="pop-btn">Remove from end</button>
             <button id="shift-btn">Remove from beginning</button>`
-            
-        const pushBtn = document.getElementById("push-btn")
-        const unshiftBtn = document.getElementById("unshift-btn")
-        const popBtn = document.getElementById("pop-btn")
-        const shiftBtn = document.getElementById("shift-btn")
-        
-        pushBtn.addEventListener("click", function(){
-            updateEmojis("push")
-            renderBtns()
-        })
-
-        unshiftBtn.addEventListener("click", function(){
-            updateEmojis("unshift")
-            renderBtns()
-        })
-
-        popBtn.addEventListener("click", function() {
-            myEmojis.pop()
-            renderEmojis()
-            renderBtns()
-        })
-
-        shiftBtn.addEventListener("click", function() {
-            myEmojis.shift()
-            renderEmojis()
-            renderBtns()
-        })
+                
     }
 }
-
 
 
 function renderEmojis() {
@@ -70,13 +43,46 @@ function updateEmojis(action) {
         emojiInput.value = ""
         renderEmojis()
         renderBtns()
+        checkBtns()
+        
     }
 }
 
+//Add event listeners to buttons if exist
+function checkBtns() {
+    
+    if(myEmojis.length > 0) { 
+        
+    const pushBtn = document.getElementById("push-btn")
+    const unshiftBtn = document.getElementById("unshift-btn")
+    const popBtn = document.getElementById("pop-btn")
+    const shiftBtn = document.getElementById("shift-btn")
+        
+     pushBtn.addEventListener("click", function(){
+         
+            updateEmojis("push")
+            renderBtns()
+            checkBtns()
+        })
 
+        unshiftBtn.addEventListener("click", function(){
+            updateEmojis("unshift")
+            renderBtns()
+            checkBtns()
+        })
 
+        popBtn.addEventListener("click", function() {
+            myEmojis.pop()
+            renderEmojis()
+            renderBtns()
+            checkBtns()
+        })
 
-
-
-
-
+        shiftBtn.addEventListener("click", function() {
+            myEmojis.shift()
+            renderEmojis()
+            renderBtns()
+            checkBtns()
+        })
+    }
+}
