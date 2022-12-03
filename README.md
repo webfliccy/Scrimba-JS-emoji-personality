@@ -1,4 +1,4 @@
-# co5e54590a9d0d80a4a8de214
+# My Emoji Generator - Scrimba Course - Essential JS concepts
 
 Quick start:
 
